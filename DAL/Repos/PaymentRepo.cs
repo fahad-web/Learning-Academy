@@ -19,7 +19,9 @@ namespace DAL.Repos
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var ex = Get(id);
+            db.Payments.Remove(ex);
+            return db.SaveChanges() > 0;
         }
 
         public List<Payment> Get()
@@ -36,7 +38,9 @@ namespace DAL.Repos
 
         public Payment Update(Payment obj)
         {
-            throw new NotImplementedException();
+            var ex = Get(obj.Id);
+            db.Entry(ex).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj; else return null;
         }
     }
 }

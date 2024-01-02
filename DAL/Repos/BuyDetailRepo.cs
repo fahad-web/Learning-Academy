@@ -19,7 +19,9 @@ namespace DAL.Repos
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var ex = Get(id);
+            db.BuyDetails.Remove(ex);
+            return db.SaveChanges() > 0;
         }
 
         public List<BuyDetail> Get()
@@ -36,7 +38,9 @@ namespace DAL.Repos
 
         public BuyDetail Update(BuyDetail obj)
         {
-            throw new NotImplementedException();
+            var ex = Get(obj.ID);
+            db.Entry(ex).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return obj; else return null;
         }
     }
 }
