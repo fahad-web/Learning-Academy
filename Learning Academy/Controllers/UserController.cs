@@ -17,7 +17,7 @@ namespace Learning_Academy.Controllers
             try
             {
                 var data = UserService.Get(Username);
-                if (data.Role == "Doctor")
+                if (data.Role == "Admin")
                 {
                     UserService.Equals(Username, adminService);
                 }

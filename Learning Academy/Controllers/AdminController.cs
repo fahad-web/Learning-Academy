@@ -27,7 +27,7 @@ namespace Learning_Academy.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
             }
         }
-
+        [Logged]
         [HttpGet]
         [Route("api/Admin/{id}")]
         public HttpResponseMessage Admin(int id)

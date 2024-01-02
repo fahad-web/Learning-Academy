@@ -1,5 +1,6 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
+using Learning_Academy.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,22 @@ namespace Learning_Academy.Controllers
 {
     public class MentorsController : ApiController
     {
+        [Logged]
+        [AdminAccess]
+        [HttpPost]
+        [Route("api/Mentors/create")]
+        public HttpResponseMessage Create(MentorsDTO data)
+        {
+            try
+            {
+                var res = MentorsService.Create(data);
+                return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Created" });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = ex.Message });
+            }
+        }
         [HttpGet]
         [Route("api/Mentors")]
         public HttpResponseMessage Mentors()

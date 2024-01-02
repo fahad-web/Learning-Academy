@@ -1,5 +1,6 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
+using Learning_Academy.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Learning_Academy.Controllers
 {
     public class StudentController : ApiController
     {
+        
         [HttpPost]
         [Route("api/Student/create")]
         public HttpResponseMessage Create(StudentDTO data)

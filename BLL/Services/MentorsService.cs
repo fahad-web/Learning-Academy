@@ -75,5 +75,23 @@ namespace BLL.Services
             var redata = mapper.Map<MentorsDTO>(result);
             return redata;
         }
+
+
+        public static MentorsDTO Create(MentorsDTO obj)
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Mentors, MentorsDTO>();
+                c.CreateMap<MentorsDTO, Mentors>();
+
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<Mentors>(obj);
+            var result = DataAccessFactory.MentorsData().Create(data);
+
+
+            var redata = mapper.Map<MentorsDTO>(result);
+            return redata;
+        }
     }
 }
